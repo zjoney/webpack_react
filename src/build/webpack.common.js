@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const os = require('os');
 const HappyPack = require('happyPack');
 
-const HappyThreadPool = HappyPack.ThreadPool({size: os.cpus().lengthh});
+const HappyThreadPool = HappyPack.ThreadPool({ size: os.cpus().lengthh });
 
 const srcDir = path.join(__dirname, '../src');
 const devMode = process.env.NODE_ENV !== 'productioin';
@@ -30,15 +30,68 @@ module.exports = {
             {
                 test: /\.less$/,
                 use: [
-                    
+                    devMode ? 'stye-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'postcss-loader',
+                    'less-loader',
                 ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'postcss-loader',
+                ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)/,
+                use: [
+                    'url-loader'
+                ],
+                include: [srcDir]
+            },
+            {
+                test: /\.(mp4|mp3|ogg|webm|flac|acc|wav)(\?.*)/,
+                use: [
+                    'url-loader'
+                ]
+            },
+            {
+                test: /\.(woff2?| eot| ttf|otf)(\?.*)?$/,
+                use: ['url-loader'],
+                include: [srcDir]
             }
         ]
     },
-    plugins: {
+    plugins: [
 
-    }
-}
+        // 开启多线程打包
+        new HappyPack({
+            id: 'happybabel',
+            loaders: ['babel-loader?catcheDirectory=true'],
+            threadPool: ThreadPool,
+            cache: true,
+            verbose: true
+        }),
+        new HtmlWebpackPlugin({
+            template: `${srcDir}/index.html`,
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: `${srcDir}/assets/images/zjone.jpg`,
+                to: 'zjone.jpg'
+            },
+        ]),
+    ],
+    resolve: {
+        alias: {
+            '@': srcDir,
+            '@pages': `${srcDir}/pages`
+        },
+    },
+};
 
 
 
