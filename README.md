@@ -1,68 +1,91 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# [react-mobx-webpack](https://github.com/zjone/react-mobx-webpack)
 
-## Available Scripts
+基于 webpack4.0 搭建的 React 中后台项目框架模板。
 
-In the project directory, you can run:
+[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/zjone/react-mobx-webpack/master/LICENSE)
 
-### `yarn start`
+[![webpack](https://img.shields.io/badge/webpack-4.41.2-green)](https://github.com/webpack/webpack) [![react](https://img.shields.io/badge/react-16.12.0-green)](https://github.com/facebook/react) [![react-router](https://img.shields.io/badge/react--router-5.1.2-green)](https://github.com/ReactTraining/react-router) [![axios](https://img.shields.io/badge/axios-0.19.0-green)](https://github.com/axios/axios) [![ant-design](https://img.shields.io/badge/ant--design-3.26.2-green.svg)](https://ant.design/index-cn) [![mobx](https://img.shields.io/badge/mobx-5.15.0-green.svg)](https://github.com/mobxjs/mobx)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 说明
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+本项目为 React 中后台项目框架模板，方便快速进行具体项目开发。包括 Webpack4.0 配置及打包优化、React 全家桶使用（React + React-router + Axios + Mobx + Antd）、ESLint 等项目开发规范等。
 
-### `yarn test`
+项目 Git 地址：[https://github.com/zjoney/react-mobx-webapck.git](https://github.com/zjoney/react-mobx-webapck.git)；
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 技术栈
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+涉及的技术栈均采用当前最新的版本和语法：
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 使用 Webpack4.0 构建项目（不使用 create-react-app、umi 等脚手架）；
+- 使用 Babel7 配置转换 ES6、React、Mobx 等语法；
+- React 版本 V16.12.0，全部采用函数化 Hooks 特性开发项目组件；
+- 采用 React-router5 工具 配置项目路由；
+- 采用 Mobx5 + Hooks 实现项目数据状态管理；
+- 封装 Axios 库实现与后台 http 请求交互；
+- UI 库采用流行的 Ant-design3.0 组件库；
+- 完整项目实现及模块结构拆分；
 
-### `yarn eject`
+### 目录结构
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+├── build                   // webpack配置
+│   ├── webpack.common.js   // webpack通用配置
+│   ├── webpack.dev.js      // webpack开发环境配置
+│   └── webpack.prod.js     // webpack生产环境配置
+├── dist                    // 打包输出目录
+├── public                  // 项目公开目录
+├── src                     // src开发目录
+│   ├── assets              // 静态资源
+│   ├── components          // 公共组件
+│   ├── layouts             // 页面布局组件
+│   ├── modules             // 公共业务模块
+│   ├── pages               // 具体业务页面
+│   ├── routers             // 项目路由配置
+│   ├── services            // axios服务等相关
+│   ├── stores              // 全局公共 mobx store
+│   ├── styles              // 存放公共样式
+│   ├── utils               // 工具库/通用函数
+│   ├── index.html          // 入口html页面
+│   └── main.js             // 项目入口文件
+├── .babelrc                // babel配置
+├── .editorconfig           // 项目格式配置
+├── .eslintrc.js            // ESLint配置
+├── .gitignore              // git 忽略配置
+├── .postcssrc.js           // postcss配置
+├── package.json            // 依赖包配置
+└── README.md               // 项目说明
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## CLI 构建命令
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 克隆项目
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+git clone git@github.com:zjoney/react-mobx-webapck.git
+```
 
-## Learn More
+### 初始化依赖配置
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+yarn install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 开发环境 启动运行
 
-### Code Splitting
+```bash
+yarn start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### 生产环境 打包构建
 
-### Analyzing the Bundle Size
+```bash
+yarn build  //生产环境 打包构建
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+yarn build:report // 图形化分析打包文件大小；
 
-### Making a Progressive Web App
+yarn build:watch // 方便排查生产环境打包后文件的错误信息（文件source map）；
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## More
