@@ -17,20 +17,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../dist'),
     filename: '[name].[chunk:8].js',
-    // publicPath: "/",
     chunkFilename: 'chunk/[name].[chunkhash:8].js',
   },
   module: {
     rules: [
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   include: [srcDir],
-      //   loader: 'eslint-loader',
-      //   enforce: 'pre',
-      //   options: {
-      //     fix: true,
-      //   },
-      // },
       {
         test: /\.(js|jsx)$/,
         include: [srcDir],
@@ -72,7 +62,7 @@ module.exports = {
     ],
   },
   plugins: [
-    // 开启 happypack 的线程池
+    // happypack 
     new HappyPack({
       id: 'happybabel',
       loaders: ['babel-loader?cacheDirectory=true'],
@@ -96,9 +86,4 @@ module.exports = {
       '@pages': `${srcDir}/pages`,
     },
   },
-  // optimization: {
-  //   removeAvailableModules: true, // 删除已解决的chunk (默认 true)
-  //   removeEmptyChunks: true, // 删除空的chunks (默认 true)
-  //   mergeDuplicateChunks: true // 合并重复的chunk (默认 true)
-  // }
 };
