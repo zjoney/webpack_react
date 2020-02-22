@@ -1,12 +1,12 @@
 import React from 'react';
 
-const HomePage = () => {
+const LoginPage = () => {
 
   return (
     <div className="page-form-demo page-content">
-     Home demo
+     LoginPage demo
     </div>
   );
 };
 
-export default HomePage;
+export default LoginPage;
