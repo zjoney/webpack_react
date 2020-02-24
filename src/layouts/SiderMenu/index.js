@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import { observer } from 'mobx-react';
 import { Layout, Menu, Icon, Row } from 'antd';
@@ -8,6 +8,11 @@ import './style.less';
 
 const SiderMenu = ({ routes }) => {
     const { globalStore } = appStores();
+    const [ openKeys, setOpenKeys ] = useState();
+    const { pathname } = useLocation();
+    const onOpenChange = keys => {
+        setOpenKeys(keys);
+    }
     return (
         <Layout.Sider
           trigger={null}
@@ -28,11 +33,12 @@ const SiderMenu = ({ routes }) => {
               className="main-menu"
               openKeys={openKeys}
               onOpenChange={onOpenChange}
-              selectedKeys={getSelectedKeys}>
+              selectedKeys={getSelectedKeys}
+              >
                 {routes}
               </Menu>
         </Layout.Sider>
     )
 }
 
-export default SiderMenu;
+export default observer(SiderMenu);

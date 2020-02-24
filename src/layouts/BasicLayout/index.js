@@ -10,12 +10,12 @@ const BasicLayout = ({ route, children }) => {
     return (
         <Layout className="main-layout">
             <SiderMenu routes={route.childRoutes} />
-            <layout className="main-layout-right">
+            <Layout className="main-layout-right">
                 <MainHeader />
                 <Layout.Content className="main-layout-content">
                     {children}
                 </Layout.Content>
-            </layout>
+            </Layout>
         </Layout>
     )
 }
