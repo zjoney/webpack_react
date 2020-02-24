@@ -6,6 +6,10 @@ import { Layout, Menu, Icon, Row } from 'antd';
 import { appStores } from '@/stores'
 import './style.less';
 
+const renderMenuItem = (target) => {
+    console.log(target)
+}
+
 const SiderMenu = ({ routes }) => {
     const { globalStore } = appStores();
     const [ openKeys, setOpenKeys ] = useState();
@@ -40,9 +44,9 @@ const SiderMenu = ({ routes }) => {
               openKeys={openKeys}
               onOpenChange={onOpenChange}
               selectedKeys={getSelectedKeys}
-              >
-                {routes}
-              </Menu>
+            >
+                {renderMenuItem(routes)}
+            </Menu>
         </Layout.Sider>
     )
 }
