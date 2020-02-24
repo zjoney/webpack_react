@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import { observer } from 'mobx-react';
 import { Layout, Menu, Icon, Row } from 'antd';
@@ -13,6 +13,12 @@ const SiderMenu = ({ routes }) => {
     const onOpenChange = keys => {
         setOpenKeys(keys);
     }
+    const getSelectedKeys = useMemo(() => {
+        console.log('getSelected');
+        const list = pathname.split('/').splice(1);
+        return list.map((item, index) => `/${list.slice(0, index+1).join('/')}`)
+
+    }, [pathname])
     return (
         <Layout.Sider
           trigger={null}
