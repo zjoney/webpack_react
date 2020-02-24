@@ -1,13 +1,28 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom'
+import { observer } from 'mobx-react';
+import { Layout, Menu, Icon, Row } from 'antd';
 
-
+import { appStores } from '@/stores'
 import './style.less';
 
-const SiderMenu = () => {
+const SiderMenu = ({ routes }) => {
+    const { globalStore } = appStores();
     return (
-        <div>
-            123
-        </div>
+        <Layout.Sider
+          trigger={null}
+          collapsible
+          collapsed={globalStore.collapsed}
+          className="main-left-sider"
+        >
+            <Link to="/">
+                <Row type="flex" align="middle" className="main-logo">
+                    <Icon type="car" style={{ color: '13e367' }} />
+                    {!globalStore.collapsed && <span className="app-name">{globalStore.appTitle}</span>}
+                </Row>
+            </Link>
+            <Menu />
+        </Layout.Sider>
     )
 }
 
