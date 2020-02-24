@@ -21,7 +21,16 @@ const SiderMenu = ({ routes }) => {
                     {!globalStore.collapsed && <span className="app-name">{globalStore.appTitle}</span>}
                 </Row>
             </Link>
-            <Menu />
+            <Menu
+              mode="inline"
+              theme="dark"
+              style={{paddingLeft: 0, marginBottom: 0}}
+              className="main-menu"
+              openKeys={openKeys}
+              onOpenChange={onOpenChange}
+              selectedKeys={getSelectedKeys}>
+                {routes}
+              </Menu>
         </Layout.Sider>
     )
 }
