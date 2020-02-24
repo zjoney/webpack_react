@@ -7,12 +7,39 @@ import { appStores } from '@/stores'
 import './style.less';
 
 const renderMenuItem = (target) => {
-    console.log(target)
+    // console.log(target)
+    return target.filter(item => item.path && item.name)
+        .map(submeu => {
+            if (submeu.childRoutes && !!submeu.childRoutes.find(child => child.path && child.name)) {
+                return (
+                    <Menu.SubMenu
+                      key={submeu.path}
+                      title={
+                      <div>{submeu.icon && <Icon type={submeu.icon} />}
+                      <span>{submeu.name}</span>
+                      </div>
+                      }
+                    >
+                        {renderMenuItem(submeu.childRoutes)}
+                    </Menu.SubMenu>
+                )
+            }
+            return (
+                <Menu.Item key={submeu.path}>
+                    <Link to={submeu.path}>
+                        <span>
+                            {submeu.icon && <Icon type={submeu.icon} />}
+                            {submeu.name}
+                        </span>
+                    </Link>
+                </Menu.Item>
+            )
+        })
 }
 
 const SiderMenu = ({ routes }) => {
     const { globalStore } = appStores();
-    const [ openKeys, setOpenKeys ] = useState();
+    const [openKeys, setOpenKeys] = useState();
     const { pathname } = useLocation();
     const onOpenChange = keys => {
         setOpenKeys(keys);
@@ -20,7 +47,7 @@ const SiderMenu = ({ routes }) => {
     const getSelectedKeys = useMemo(() => {
         console.log('getSelected');
         const list = pathname.split('/').splice(1);
-        return list.map((item, index) => `/${list.slice(0, index+1).join('/')}`)
+        return list.map((item, index) => `/${list.slice(0, index + 1).join('/')}`)
 
     }, [pathname])
     return (
@@ -39,7 +66,7 @@ const SiderMenu = ({ routes }) => {
             <Menu
               mode="inline"
               theme="dark"
-              style={{paddingLeft: 0, marginBottom: 0}}
+              style={{ paddingLeft: 0, marginBottom: 0 }}
               className="main-menu"
               openKeys={openKeys}
               onOpenChange={onOpenChange}
