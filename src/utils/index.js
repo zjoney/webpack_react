@@ -23,7 +23,32 @@ export function autoMatch(prefix) {
 }
 
 export function checkStatus(params) {
+  const status = params.status || -1000;
+  if(status === 304 || (status >=200 && status < 300 )) {
+    return params.data;
+  } else {
+    let errorInfo = '';
+    switch(status) {
+      case -1: 
+        errorInfo = '远程服务器响应失败， 请稍后再重试';
+        break;
+      case 400: 
+        errorInfo = '400: 错误请求';
+        break;
+      case 401: 
+        errorInfo = '401: 访问令牌失效或已过期';
+        break;
+      case 403:
+        errorInfo = '';
+        break;
+      default:
 
+    }
+    return {
+      status,
+      msg: errorInfo
+    }
+  }
 }
 
 export function splitUrl (params) {
