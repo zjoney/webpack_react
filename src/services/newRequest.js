@@ -4,6 +4,7 @@
 import axios from 'axios';
 import Qs from 'qs'; // 序列化post类型数据
 import { message } from 'antd';
+import { checkStatus } from '../utils';
 
 let inError = false;
 const instance = axios.create({
@@ -57,7 +58,14 @@ instance.interceptors.response.use(
     const { code } = response.data || {};
     if(code === 109 || code === 108) {
       if(!inError) {
-        message.warning('登录超时， 即将跳转到登录页面....')
+        message.warning('登录超时， 即将跳转到登录页面....');
+        inError = true;
+        setTimeout(() => {
+          message.destroy();
+          window.location.href = '/login';
+          inError = false;
+        }, 2000);
+        return Promise.resolve({})
       } else if (response) {
         return Promise.resolve(checkStatus(response));
       }
