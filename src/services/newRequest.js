@@ -83,4 +83,16 @@ instance.interceptors.response.use(
    },
 );
 
+const request = async function(opt) {
+  const options = {
+    method: 'get',
+    ifHandleError: true, // 是否统一接口失败提示
+    ...opt,
+  }
+  options.baseURL = autoMatch(options.prefix);
+  try()catch (err) {
 
+  }
+}
+
+export default request;
