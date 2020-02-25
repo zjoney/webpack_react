@@ -90,7 +90,14 @@ const request = async function(opt) {
     ...opt,
   }
   options.baseURL = autoMatch(options.prefix);
-  try()catch (err) {
+  try{
+    const res = await instance(options);
+    
+    if (!res.success && options.ifHandleError) {
+      message.error(res.message || '请求处理失败！');
+    }
+    return res;
+  } catch (err) {
 
   }
 }
