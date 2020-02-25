@@ -26,4 +26,15 @@ export function checkStatus(params) {
 
 }
 
+export function splitUrl (params) {
+  const str = params.split('?')[1];
+  const items = (str && str.split('&')) || [];
+  let arr =[];
+  const json={};
+  for (let i = 0; i<items.length; i++ ) {
+    arr = items[i].split('=');
+    json[arr[0]] = arr[1];
+  }
+  return json
+}
 
