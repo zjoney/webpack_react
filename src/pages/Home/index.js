@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Store from './store';
 import './style.less';
 
 const HomePage = () => {
