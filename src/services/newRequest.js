@@ -4,7 +4,7 @@
 import axios from 'axios';
 import Qs from 'qs'; // 序列化post类型数据
 import { message } from 'antd';
-import { checkStatus } from '../utils';
+import { checkStatus, autoMatch } from '../utils';
 
 let inError = false;
 const instance = axios.create({
