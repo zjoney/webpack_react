@@ -22,6 +22,12 @@ class HomeStore {
        mehtod: 'post',
        data: { page, size},
      })
+
+     if(res.success) {
+       const resData = res.data || {};
+       console.log(resData);
+     }
+     this.loading = false;
   }
 }
 
