@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 
 /* 接口封装 */
 import axios from 'axios';
@@ -31,8 +32,21 @@ instance.interceptors.request.use(
     );
     if(config.method === 'post') {
       const contentType = config.headers['Content-Type'];
-      
+      // 根据contentType 转换data格式
+      if(contentType) {
+        if(contentType.includes('mutipart')) {
+          // config.data = data;
+        } else if (contentType.includes('json')) {
+          config.data = JSON.stringify(config.data);
+        } else {
+          config.data = Qs.stringify(config.data);
+        }
+      } 
     }
+    return Promise.resolved(config);
+  },
+  function(err) {
+    return Promise.reject(err);
   }
 )
 
