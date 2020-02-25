@@ -13,7 +13,7 @@ const menu = () => (
          个人信息
      </Menu.Item>
      <Menu.Divider />
-     <Menu.Item KEY="1">
+     <Menu.Item key="1">
          <Link to="/login">
              <Icon type="logout" />
              退出登录
