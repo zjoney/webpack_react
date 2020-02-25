@@ -98,7 +98,11 @@ const request = async function(opt) {
     }
     return res;
   } catch (err) {
-
+    if (options.ifHandleError) {
+      // 自定义参数，是否允许全局提示错误信息
+      message.error(err.message || err.msg || '请求处理失败！');
+    }
+    return err;
   }
 }
 
