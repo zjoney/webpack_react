@@ -49,4 +49,4 @@ const MainHeader = () => {
     )
 }
 
-export default MainHeader;
+export default observer(MainHeader)
