@@ -7,7 +7,7 @@ class HomeStore {
 
   @observable pageTitle = "Home主页";
 
-  @observable loading = false:;
+  @observable loading = false;
 
   @action.bound setData(data={}) {
     Object.entries(data).forEach(item => {
