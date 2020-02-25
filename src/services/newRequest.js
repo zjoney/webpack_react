@@ -47,7 +47,22 @@ instance.interceptors.request.use(
   },
   function(err) {
     return Promise.reject(err);
-  }
+  },
+);
+
+// 实例添加响应拦截器
+instance.interceptors.response.use(
+   function(response) {
+    //  对响应数据做处理
+    const { code } = response.data || {};
+    if(code === 109 || code === 108) {
+      if(!inError) {
+        message.warning('登录超时， 即将跳转到登录页面....')
+      } else if (response) {
+        return Promise.resolve(checkStatus(response));
+      }
+    }
+   }
 )
 
 
