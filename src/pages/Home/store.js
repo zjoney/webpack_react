@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { observable, action } from 'mobx';
+import request from '@/services/newRequest'
 
 class HomeStore {
   @observable tableData = [];
