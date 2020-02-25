@@ -15,6 +15,9 @@ class HomeStore {
   }
 
   //list data
+  @action.bound async qryTableData(page=1, size=10) {
+     this.loading = true;
+  }
 }
 
 export default createContext(new HomeStore());
