@@ -6,7 +6,7 @@ import MainHeader from '../MainHeader';
 import './style.less';
 
 const BasicLayout = ({ route, children }) => {
-    console.log();
+    console.log('layout', route, children);
     return (
         <Layout className="main-layout">
             <SiderMenu routes={route.childRoutes} />

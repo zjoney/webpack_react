@@ -45,7 +45,7 @@ const SiderMenu = ({ routes }) => {
         setOpenKeys(keys);
     }
     const getSelectedKeys = useMemo(() => {
-        console.log('getSelected');
+        // console.log('getSelected');
         const list = pathname.split('/').splice(1);
         return list.map((item, index) => `/${list.slice(0, index + 1).join('/')}`)
 
