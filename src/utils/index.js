@@ -39,14 +39,36 @@ export function checkStatus(params) {
         errorInfo = '401: 访问令牌失效或已过期';
         break;
       case 403:
-        errorInfo = '';
+        errorInfo = '403：拒绝访问';
+        break;
+      case 404:
+        errorInfo = '404：资源不存在';
+        break;
+      case 405:
+        errorInfo = '405：请求方法未允许';
+        break;
+      case 408:
+        errorInfo = '408：请求超时';
+        break;
+      case 500:
+        errorInfo = '500：访问服务失败';
+        break;
+      case 501:
+        errorInfo = '501：未实现';
+        break;
+      case 502:
+        errorInfo = '502：无效网关';
+        break;
+      case 503:
+        errorInfo = '503：服务不可用';
         break;
       default:
+        errorInfo = `连接错误`;
 
     }
     return {
       status,
-      msg: errorInfo
+      msg: errorInfo,
     }
   }
 }
