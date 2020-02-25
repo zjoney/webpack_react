@@ -31,7 +31,7 @@ const MainHeader = () => {
                <Col style={{flex: 1}}>
                   <Icon 
                     className="trigger"
-                    type={globalStore.collapsed ? 'menu-unfold':'meu-fold'}
+                    type={globalStore.collapsed ? 'menu-unfold':'menu-fold'}
                     onClick={globalStore.toggleCollapsed}
                   />
                </Col>
