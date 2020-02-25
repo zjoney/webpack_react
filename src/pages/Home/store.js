@@ -19,6 +19,8 @@ class HomeStore {
      this.loading = true;
      const res = await request({
        url: '/list',
+       mehtod: 'post',
+       data: { page, size},
      })
   }
 }
