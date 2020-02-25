@@ -22,7 +22,18 @@ const instance = axios.create({
     'Cathe-Control': 'no-cache',
   },
 });
-
-
+// 实例添加请求拦截器
+instance.interceptors.request.use(
+  function(config) {
+    // 在发送之前处理
+    config.headers = Object.assign(
+      config.method === 'get' ? { Accept: 'application/json', 'Content-Type': 'application/json; charset=UTF-8'} : { 'Content-Type': 'applicaiton/x-www-form-urlencoded; charset= UTF-8'}, config.headers,
+    );
+    if(config.method === 'post') {
+      const contentType = config.headers['Content-Type'];
+      
+    }
+  }
+)
 
 
