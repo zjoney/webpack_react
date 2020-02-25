@@ -73,8 +73,14 @@ instance.interceptors.response.use(
     }
    },
    function(error) {
-     
-   }
-)
+     if(error.response) {
+       return Promise.reject(checkStatus(error.response));
+     } else if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {
+       return Promise.reject({msg: '请求超时'})
+     } else {
+       return Promise.reject({});
+     }
+   },
+);
 
 
