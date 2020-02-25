@@ -65,11 +65,15 @@ instance.interceptors.response.use(
           window.location.href = '/login';
           inError = false;
         }, 2000);
-        return Promise.resolve({})
-      } else if (response) {
-        return Promise.resolve(checkStatus(response));
       }
+      
+      return Promise.resolve({})
+    } else if (response) {
+      return Promise.resolve(checkStatus(response));
     }
+   },
+   function(error) {
+     
    }
 )
 
