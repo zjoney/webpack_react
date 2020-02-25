@@ -33,7 +33,6 @@ const MainHeader = () => {
                     className="trigger"
                     type={globalStore.collapsed ? 'menu-unfold':'meu-fold'}
                     onClick={globalStore.toggleCollapsed}
-
                   />
                </Col>
                <Col>
