@@ -1,11 +1,9 @@
 import React from 'react';
+import './style.less';
 
 const WelcomePage = () => {
-
   return (
-    <div className="page-form-demo page-content">
-     WelcomePage demo
-    </div>
+    <div className="page-welcome" />
   );
 };
 
