@@ -59,7 +59,7 @@ const SiderMenu = ({ routes }) => {
         >
             <Link to="/">
         <Row type="flex" align="middle" className="main-logo">
-          <Icon type="car" style={{ color: '#13e367' }} />
+          
           {!globalStore.collapsed && <span className="app-name">{globalStore.appTitle}</span>}
         </Row>
             </Link>

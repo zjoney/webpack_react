@@ -2,7 +2,7 @@
 import { observable, action } from 'mobx';
 
 export default class GlobalStore {
-    @observable appTitle = '服务管理平台';
+    @observable appTitle = '管理平台';
 
     @observable collapsed = false;
 
